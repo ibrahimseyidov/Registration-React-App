@@ -28,7 +28,7 @@ export default class Form extends Component {
                                 onChange={this.props.getNameInfo}
                             />
                             <TextField
-                                helperText="Please Enter Your Email"
+                                helperText="Please enter your email"
                                 id="demo-helper-text-aligned-no-helper"
                                 label="Email"
                                 onChange={this.props.getEmailInfo}

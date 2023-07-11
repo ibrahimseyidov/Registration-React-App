@@ -62,6 +62,7 @@ export class App extends Component {
     this.getNameInfo = this.getNameInfo.bind(this)
     this.getEmailInfo = this.getEmailInfo.bind(this)
     this.deleteUser = this.deleteUser.bind(this)
+    this.changeState = this.changeState.bind(this)
   }
 
   registerUserInfo() {
@@ -75,7 +76,6 @@ export class App extends Component {
       return
     }
     this.setState({ filteredUser: [...userInfo, newUserInfo] })
-    console.log(inputArea);
     inputArea.value = ""
     inputAreaEmail.value = ""
     toast.success('Congratulations! Registration Process is Successful!');
@@ -111,7 +111,21 @@ export class App extends Component {
 
     toast.success('Registration Information Deleted with Successful!');
 
+  }
 
+  changeState = (changeStateStatus, name, email, id) => {
+    const copyFilteredUser = [...this.state.filteredUser]
+
+    const targetUser = copyFilteredUser.find(user => user.userId === id)
+
+    targetUser.name = name;
+    targetUser.email = email;
+    targetUser.userId = id;
+
+    this.setState({ filteredUser: copyFilteredUser })
+    toast.success('Congratulations! User Info Edited Successfully');
+
+    changeStateStatus()
   }
 
 
@@ -123,9 +137,15 @@ export class App extends Component {
       <>
         <ToastContainer />
 
+
         <Form registerUserInfo={this.registerUserInfo} getNameInfo={this.getNameInfo} getEmailInfo={this.getEmailInfo} />
-        <Tables userInfo={filteredUser} deleteUser={this.deleteUser} />
+
+        <Tables changeState={this.changeState} userinfo={filteredUser} deleteuser={this.deleteUser} changeuserinfo={this.changeUserInfo} />
+
       </>
+
+
+
 
     );
   }

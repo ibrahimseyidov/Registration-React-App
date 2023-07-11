@@ -1,7 +1,7 @@
 .tables-container {
     display: flex;
     width: 50% !important;
-    max-height: 400px;
+    max-height: 300px;
     overflow-y: auto;
     justify-content: center;
     margin: 0 auto;
